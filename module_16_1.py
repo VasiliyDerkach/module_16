@@ -13,6 +13,7 @@ async def admin_page() -> dict:
 async def user_page(user_id: str) -> dict:
     return {'message': f'Вы вошли как пользователь № {user_id}'}
 
+
 @app.get('/user')
 async def user_page(user_name: str, age: int) -> dict:
     return {'message': f'Информация о пользователе. Имя: {user_name}, Возраст: {age}'}
