@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a1cb760-686c-4850-804b-62e6efcb89ac" name="Changes" comment="1">
-      <change afterPath="$PROJECT_DIR$/module_16_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/module_16_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/module_16.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/module_16.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,12 +39,13 @@
     "Python.module_16_1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/PythonCurse/module_16",
+    "last_opened_file_path": "C:/Users/1/PycharmProjects/module__16",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\1\PycharmProjects\module__16" />
       <recent name="C:\PythonCurse\module_16" />
     </key>
   </component>
