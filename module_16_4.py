@@ -37,11 +37,10 @@ async def add_user(usr: User )-> User:
     return usr
 
 @app.put('/user/{user_id}/{username}/{age}')
-async def update_user(usr: User)-> User:
+async def update_user(user_id: int, username: str, age: int)-> User:
     try:
-        usr.username = username
-        usr.age = age
-        users[user_id] = usr
+        usr = User(id=user_id,username=username,age=age)
+        users[user_id-1] = usr
         return usr
     except IndexError:
         raise HTTPException(status_code= 404, detail= "User was not found")
