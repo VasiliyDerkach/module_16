@@ -27,7 +27,7 @@ async def user_page(user_name: Annotated[str,Path(min_length=5,max_length=20,des
     return {'message': f'Информация о пользователе. Имя: {user_name}, Возраст: {age}'}
 
 @app.get('/users')
-async def get_users()->dict:
+async def get_users()->list:
     return users
 
 @app.post('/user/{username}/{age}')
@@ -37,13 +37,8 @@ async def add_user(usr: User )-> User:
     return usr
 
 @app.put('/user/{user_id}/{username}/{age}')
-async def update_user(user_id: Annotated[int, Path(ge=1,le=100,description='Enter User ID',example='1')],
-                      username: Annotated[str, Path(min_length=5, max_length=20, description='Enter username',
-                                                    example='UrbanUser')],
-                        age: Annotated[int,Path(ge=18,le=120,description='Enter age',example='24')]
-                      )-> User:
+async def update_user(usr: User)-> User:
     try:
-        usr = User()
         usr.username = username
         usr.age = age
         users[user_id] = usr
