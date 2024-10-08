@@ -1,8 +1,11 @@
-from fastapi import FastAPI, Path, HTTPException
+from fastapi import FastAPI, Path, HTTPException, Request
+from fastapi.responses import HTMLResponse
 from typing import Annotated
 from pydantic import BaseModel
+from fastapi.templating import Jinja2Templates
 app = FastAPI()
 users = []
+templt = Jinja2Templates(directory='templates')
 class User(BaseModel):
     id: int = None
     username: str
@@ -10,8 +13,8 @@ class User(BaseModel):
 
 
 @app.get('/')
-async def main_page() -> dict:
-    return {'message': 'Главная страница'}
+async def main_page(request: Request) -> HTMLResponse:
+    return templt.TemplateResponse('users.html',{'request': request, "users": users})
 
 @app.get('/user/admin')
 async def admin_page() -> dict:
@@ -26,9 +29,9 @@ async def user_page(user_name: Annotated[str,Path(min_length=5,max_length=20,des
                 example='UrbanUser' )], age: Annotated[int,Path(ge=18,le=120,description='Enter age',example='24')]) -> dict:
     return {'message': f'Информация о пользователе. Имя: {user_name}, Возраст: {age}'}
 
-@app.get('/users')
-async def get_users()->list:
-    return users
+@app.get('/users/{user_id}')
+async def get_users(request: Request, user_id: int)->HTMLResponse:
+    return templt.TemplateResponse('users.html',{'request': request, "user": users[user_id]})
 
 @app.post('/user/{username}/{age}')
 async def add_user(usr: User )-> User:
