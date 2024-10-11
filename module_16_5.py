@@ -40,20 +40,16 @@ async def add_user(usr: User )-> User:
     return usr
 
 @app.put('/user/{user_id}/{username}/{age}')
-async def update_user(user_id: Annotated[int, Path(ge=1,le=100,description='Enter User ID',example='1')],
-                      username: Annotated[str, Path(min_length=5, max_length=20, description='Enter username',
-                                                    example='UrbanUser')],
-                        age: Annotated[int,Path(ge=18,le=120,description='Enter age',example='24')]
-                      )-> User:
-    try:
-        usr = User()
-        usr.username = username
-        usr.age = age
-        usr.id = user_id
-        users[user_id] = usr
-        return usr
-    except IndexError:
-        raise HTTPException(status_code= 404, detail= "User was not found")
+async def update_user(user_id: int, username: str, age: int)-> User:
+    if user_id <= len(users):
+        try:
+            usr = User(id=user_id,username=username,age=age)
+            users[user_id-1] = usr
+            return usr
+        except IndexError:
+            raise HTTPException(status_code= 404, detail= "User was not found")
+    else:
+        raise HTTPException(status_code= 404, detail= f"User.id={user_id} was not found")
 
 @app.delete('/user/{user_id}')
 async def delete_user(user_id: Annotated[int, Path(ge=1,le=100,description='Enter User ID')])->User:
