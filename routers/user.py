@@ -16,7 +16,7 @@ from slugify import slugify
 tsk = APIRouter(prefix='/user' ,tags=['user' ])
 @tsk.get('/')
 async def all_users(db: Annotated[Session, Depends(get_db)]):
-    users = db.scalar(select(User).all())
+    users = db.scalar(select(User).where())
     return users
 @tsk.get('/user_id')
 async def user_by_id(db: Annotated[Session, Depends(get_db)],user_id: int):
@@ -32,7 +32,7 @@ async def  create_user(db: Annotated[Session, Depends(get_db)], create_user: Cre
     db.execute(insert(User).values(username=create_user.username,
                                    firstname=create_user.firstname,
                                    lastname=create_user.lastname,
-
+                                   slug=slugify(create_user.username),
                                    age=create_user.age))
     db.commit()
     return {
@@ -40,7 +40,7 @@ async def  create_user(db: Annotated[Session, Depends(get_db)], create_user: Cre
         'transaction': 'Successful'
     }
 @tsk.put('/update')
-async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int):
+async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, upd_user: CreateUser):
     user = db.scalar(select(User).where(User.id == user_id))
     if user is None:
         raise HTTPException(
@@ -48,10 +48,10 @@ async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int):
             detail='User was not found'
         )
     db.execute(update(User).where(User.id == user_id).values(
-        firstname=create_user.firstname,
-        lastname=create_user.lastname,
+        firstname=upd_user.firstname,
+        lastname=upd_user.lastname,
 
-        age=create_user.age
+        age=upd_user.age
     ))
     db.commit()
     return {'status_code': status.HTTP_200_OK,

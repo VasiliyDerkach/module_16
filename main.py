@@ -7,3 +7,5 @@ async def get_main():
 
 app.include_router(user.tsk)
 app.include_router(task.tsk)
+
+#python -m uvicorn main:app

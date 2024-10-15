@@ -4,6 +4,7 @@ class CreateUser(BaseModel):
     firstname: str
     lastname: str
     age: int
+    slug: str
 class UpdateUser(BaseModel):
     firstname: str
     lastname: str
