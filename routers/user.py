@@ -40,7 +40,7 @@ async def  create_user(db: Annotated[Session, Depends(get_db)], create_user: Cre
         'transaction': 'Successful'
     }
 @tsk.put('/update')
-async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, upd_user: CreateUser):
+async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, upd_user: UpdateUser):
     user = db.scalar(select(User).where(User.id == user_id))
     if user is None:
         raise HTTPException(
