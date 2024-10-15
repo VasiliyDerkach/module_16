@@ -16,7 +16,7 @@ from slugify import slugify
 tsk = APIRouter(prefix='/user' ,tags=['user' ])
 @tsk.get('/')
 async def all_users(db: Annotated[Session, Depends(get_db)]):
-    users = db.scalar(select(User).where())
+    users = db.scalars(select(User).where()).all()
     return users
 @tsk.get('/user_id')
 async def user_by_id(db: Annotated[Session, Depends(get_db)],user_id: int):
