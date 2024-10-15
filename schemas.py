@@ -12,7 +12,7 @@ class CreateTask(BaseModel):
     title: str
     content: str
     priority: int
-class UpdateTask(BaseModel) с теми же атрибутами, что и CreateTask.
+class UpdateTask(BaseModel):
     title: str
     content: str
     priority: int
