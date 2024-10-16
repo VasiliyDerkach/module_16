@@ -66,10 +66,16 @@ async def delete_user(db: Annotated[Session, Depends(get_db)], user_id: int):
             status_code=status.HTTP_404_NOT_FOUND,
             detail='User was not found'
         )
+    db.execute(delete(Task).where(Task.user_id==user_id))
+    db.commit()
     db.execute(delete(User).where(User.id == user_id))
     db.commit()
     return {'status_code': status.HTTP_200_OK,
             'transaction': 'User delete is successful!'}
+@tsk.get("/user_id/tasks")
+async def tasks_by_user_id(db: Annotated[Session, Depends(get_db)], user_id: int):
+    tasks = db.scalars(select(Task).where(Task.user_id==user_id)).all()
+    return tasks
 
 # @tsk.get('/{user_slug}')
 # async def user_by_slag(db: Annotated[Session, Depends(get_db)], user_slug: str):
