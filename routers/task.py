@@ -16,7 +16,7 @@ from slugify import slugify
 tsk = APIRouter(prefix='/task' ,tags=['task' ])
 @tsk.get('/')
 async def all_tasks(db: Annotated[Session, Depends(get_db)]):
-    tasks = db.scalars(select().where(Task)).all()
+    tasks = db.scalars(select(Task).where()).all()
     return tasks
 
 @tsk.get('/task_id')
@@ -33,15 +33,14 @@ async def create_task(db: Annotated[Session, Depends(get_db)], create_task: Crea
     user = db.scalar(select(User).where(User.id == user_id))
     usr_id = user_id
     if user is None:
-        usr_id = None
-    # если пользователь не найден, то Task создается, но с user, user_id = None (по крайней мере, я так понял задание)
+        usr_id = -1
+    # если пользователь не найден, то Task создается, но с user_id = -1 (по крайней мере, я так понял задание)
     db.execute(insert(Task).values(title=create_task.title,
                                    content=create_task.content,
                                    priority=create_task.priority,
                                    slug=slugify(create_task.title),
                                    completed=create_task.completed,
-                                   user_id=usr_id,
-                                   user=user
+                                   user_id=usr_id
                                    )
                 )
     db.commit()

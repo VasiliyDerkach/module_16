@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a1cb760-686c-4850-804b-62e6efcb89ac" name="Changes" comment="1510+">
+    <list default="true" id="9a1cb760-686c-4850-804b-62e6efcb89ac" name="Changes" comment="1610">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/routers/task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/routers/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager.db" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728985318334</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="1610">
+      <option name="closed" value="true" />
+      <created>1729057631126</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1729057631126</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -253,6 +259,7 @@
     <MESSAGE value="1410" />
     <MESSAGE value="1510" />
     <MESSAGE value="1510+" />
-    <option name="LAST_COMMIT_MESSAGE" value="1510+" />
+    <MESSAGE value="1610" />
+    <option name="LAST_COMMIT_MESSAGE" value="1610" />
   </component>
 </project>
